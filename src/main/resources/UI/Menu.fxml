@@ -29,7 +29,7 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <Button fx:id="btn_all" layoutX="34.0" layoutY="188.0" mnemonicParsing="false" onAction="#allCourse" style="-fx-background-color: #CCFFCC; -fx-border-color: black;" text="All Course">
+                  <Button fx:id="btn_all" layoutX="34.0" layoutY="188.0" mnemonicParsing="false" onAction="#allCourse" style="-fx-background-color: linear-gradient(to right, #00ff99 0%, #ccff66 100%); -fx-background-radius: 100 100 100 100;" text="All Course">
                      <font>
                         <Font size="22.0" />
                      </font></Button>
@@ -39,12 +39,12 @@
                      </font>
                   </Label>
                   <ImageView fx:id="img" fitHeight="107.0" fitWidth="113.0" layoutX="53.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="btn_regis" layoutX="34.0" layoutY="245.0" mnemonicParsing="false" onAction="#register" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: #CCFFCC; -fx-border-color: black;" text="Register">
+                  <Button fx:id="btn_regis" layoutX="34.0" layoutY="245.0" mnemonicParsing="false" onAction="#register" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: linear-gradient(to right, #00ff99 0%, #ccff66 100%); -fx-background-radius: 100 100 100 100;" text="Register">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_logOut" layoutX="34.0" layoutY="528.0" mnemonicParsing="false" onAction="#logOut" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: #FFCCCC; -fx-border-color: black;" text="Logout">
+                  <Button fx:id="btn_logOut" layoutX="34.0" layoutY="528.0" mnemonicParsing="false" onAction="#logOut" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: linear-gradient(to right, #ff5050 0%, #ff5050 100%);; -fx-background-radius: 100 100 100 100;" text="Logout">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -58,16 +58,16 @@
                         <Image url="@../bg.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="147.0" layoutY="150.0" prefHeight="70.0" prefWidth="285.0" text="Welcome to">
-                     <font>
-                        <Font size="47.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="224.0" layoutY="220.0" text="CS">
-                     <font>
-                        <Font size="96.0" />
-                     </font>
-                  </Label>
+                  <ImageView fitHeight="347.0" fitWidth="367.0" layoutX="106.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../kasetsart.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="347.0" fitWidth="704.0" layoutX="-58.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../CS.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
         </items>

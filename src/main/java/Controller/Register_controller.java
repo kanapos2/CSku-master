@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
 public class Register_controller {
 
 
-    private ArrayList<String> statusId = new ArrayList<>();
 
     private String id;
 
@@ -324,20 +323,17 @@ public class Register_controller {
     @FXML
     public void checkUpdateSubject(){
 
-        System.out.println("---------- DB open ---------");
 
         DBControl openDB = DBConnect.openDB();
         for (Course course : openDB.readCourse()){
             for (RegisteredSubject registeredSubject : openDB.readRegister()){
                 if (registeredSubject.getCourseName().equals(course.getId()) && registeredSubject.getCourseId().equals(id)){
-                    System.out.println("---------- EQUILT ---------");
-                    statusId.add(registeredSubject.getCourseName());
+//                    System.out.println("---------- EQUILT ---------");
                     updateColor(tb2_id);
                 }
             }
         }
 
-        System.out.println(statusId);
     }
 
 }

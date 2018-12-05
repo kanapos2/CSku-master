@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../CSS/Register.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Register_controller">
+   <children>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <ImageView fitHeight="736.0" fitWidth="870.0" layoutX="-16.0" layoutY="-357.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../bg.png" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="allSubjecttable" layoutX="29.0" layoutY="15.0" prefHeight="267.0" prefWidth="750.0">
+                    <columns>
+                      <TableColumn fx:id="tb_id" prefWidth="115.19997787475586" resizable="false" text="ID" />
+                      <TableColumn fx:id="tb_name" prefWidth="427.2000274658203" resizable="false" text="Name" />
+                        <TableColumn fx:id="tb_credit" prefWidth="82.39996337890625" resizable="false" text="Credit" />
+                        <TableColumn fx:id="tb_prerequisite" prefWidth="126.4000244140625" resizable="false" text="Prerequisite" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../bg.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="91.0" layoutY="40.0" text="Add id subject :">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="idSubject" layoutX="246.0" layoutY="39.0" />
+                  <Button fx:id="btn_submit" defaultButton="true" layoutX="432.0" layoutY="39.0" mnemonicParsing="false" onAction="#addSubject" prefHeight="27.0" prefWidth="65.0" text="submit" />
+                  <TableView fx:id="table2" layoutX="29.0" layoutY="81.0" prefHeight="200.0" prefWidth="548.0">
+                    <columns>
+                      <TableColumn fx:id="tb2_id" prefWidth="97.0" resizable="false" text="ID" />
+                      <TableColumn fx:id="tb2_name" prefWidth="374.0" resizable="false" text="Name" />
+                        <TableColumn fx:id="tb2_credit" prefWidth="75.0" resizable="false" text="Credit" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btn_cancle" layoutX="599.0" layoutY="237.0" mnemonicParsing="false" onAction="#gotoBack" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: linear-gradient(to right, #ff5050 0%, #ff5050 100%);; -fx-background-radius: 100 100 100 100;" text="Back">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

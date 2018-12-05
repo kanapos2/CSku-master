@@ -14,10 +14,10 @@ public class DBConnect {
                 connect = DriverManager.getConnection(dbURL);
             }
             if (connect != null) {
-                System.out.println("Connect to database!!!");
+//                System.out.println("Connect to database!!!");
                 DatabaseMetaData dm = (DatabaseMetaData) connect.getMetaData();
-                System.out.println("Driver name: " + dm.getDriverName());
-                System.out.println("Product name: " + dm.getDatabaseProductName());
+//                System.out.println("Driver name: " + dm.getDriverName());
+//                System.out.println("Product name: " + dm.getDatabaseProductName());
             }
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -31,7 +31,7 @@ public class DBConnect {
         try {
             this.connect.close();
             connect = null;
-            System.out.println("Close DBConnector!!!");
+//            System.out.println("Close DBConnector!!!");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,0 +1,42 @@
+.button{
+    -fx-background-radius: 100 100 100 100;
+    /*-fx-border-radius: 100 100 100 100;*/
+    /*-fx-border-color: black;*/
+
+}
+
+#btn_all{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #ffcc66 100%);
+}
+
+#btn_4_2{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #ffcc99 100%);
+}
+
+#btn_4_1{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #ffcccc 100%);
+}
+
+#btn_3_2{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #ffccff 100%);
+}
+
+#btn_3_1{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #cc99ff 100%);
+}
+
+#btn_2_2{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #9999ff 100%);
+}
+
+#btn_2_1{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #6666ff 100%);
+}
+
+#btn_1_2{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #3333cc 100%);
+}
+
+#btn_1_1{
+    -fx-background-color: linear-gradient(to bottom, #ccffff 0%, #333399 100%);
+}

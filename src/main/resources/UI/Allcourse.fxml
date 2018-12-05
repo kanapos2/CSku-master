@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -27,12 +26,7 @@
             <TableColumn fx:id="c_diff" prefWidth="66.0" resizable="false" text="Difficulty" />
         </columns>
       </TableView>
-      <Label layoutX="455.0" layoutY="7.0" text="4 year for CS">
-         <font>
-            <Font size="42.0" />
-         </font>
-      </Label>
-      <Button fx:id="back" layoutX="31.0" layoutY="550.0" mnemonicParsing="false" onAction="#gotoMenu" style="-fx-background-color: #FF6666;" text="Back">
+      <Button fx:id="back" layoutX="15.0" layoutY="550.0" mnemonicParsing="false" onAction="#gotoMenu" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: linear-gradient(to right, #ff5050 0%, #ff5050 100%);;" text="Back">
          <font>
             <Font size="17.0" />
          </font>
@@ -46,5 +40,10 @@
       <Button fx:id="btn_2_1" layoutX="14.0" layoutY="381.0" mnemonicParsing="false" onAction="#enterSecondBtnTermOne" prefHeight="34.0" prefWidth="137.0" text="2.1" />
       <Button fx:id="btn_1_2" layoutX="14.0" layoutY="423.0" mnemonicParsing="false" onAction="#enterFirstBtnTermTwo" prefHeight="34.0" prefWidth="137.0" text="1.2" />
       <Button fx:id="btn_1_1" layoutX="14.0" layoutY="469.0" mnemonicParsing="false" onAction="#enterFirstBtnTermOne" prefHeight="34.0" prefWidth="137.0" text="1.1" />
+      <ImageView fitHeight="242.0" fitWidth="674.0" layoutX="230.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../text.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

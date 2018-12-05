@@ -53,7 +53,7 @@
                         <TableColumn fx:id="tb2_credit" prefWidth="75.0" resizable="false" text="Credit" />
                     </columns>
                   </TableView>
-                  <Button fx:id="btn_cancle" layoutX="599.0" layoutY="237.0" mnemonicParsing="false" onAction="#gotoBack" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: #FF6666; -fx-border-color: black;" text="Back">
+                  <Button fx:id="btn_cancle" layoutX="599.0" layoutY="237.0" mnemonicParsing="false" onAction="#gotoBack" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: linear-gradient(to right, #ff5050 0%, #ff5050 100%);; -fx-background-radius: 100 100 100 100;" text="Back">
                      <font>
                         <Font size="23.0" />
                      </font>
