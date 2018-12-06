@@ -298,7 +298,6 @@ public class AllCourse_controller implements Initializable {
 
     public void getID(String idFromMenu){
         id = idFromMenu;
-        System.out.println(id);
     }
 
 
@@ -318,6 +317,8 @@ public class AllCourse_controller implements Initializable {
                     stage.setScene(new Scene(loader.load(), 800, 600));
                     stage.setTitle("Menu Register");
                     stage.setResizable(false);
+                    stage.setX(335);
+
 
                     Menu_controller controller = (Menu_controller) loader.getController();
                     name = s.getFirstName()+"\t"+s.getLastName();
@@ -340,12 +341,12 @@ public class AllCourse_controller implements Initializable {
             return new TableCell<Course, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty); //This is mandatory
-                    if (item == null || empty) { //If the cell is empty
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
                         setText(null);
                         setStyle("");
-                    } else { //If the cell is not empty\
-                        setText(item); //Put the String data in the cell
+                    } else {
+                        setText(item);
                         Course auxPerson = getTableView().getItems().get(getIndex());
                         if (auxPerson.getDifficulty().equals("3")) {
                             setText("Hard");

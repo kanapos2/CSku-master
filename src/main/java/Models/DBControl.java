@@ -103,27 +103,6 @@ public class DBControl {
         return incomeArray;
     }
 
-    public ArrayList<RegisteredSubject> readRegister(){ // Review  //
-        ArrayList<RegisteredSubject> incomeArray = new ArrayList<>();
-        RegisteredSubject inFlow = null;
-        try {
-            stmt = connection.createStatement();
-            String query = "SELECT * FROM Register";
-            resultSet = stmt.executeQuery(query);
-            while (resultSet.next()) {
-                inFlow = new RegisteredSubject(resultSet.getString(1),
-                        resultSet.getString(2) ,
-                        resultSet.getString(3),
-                        resultSet.getString(4));
-
-                incomeArray.add(inFlow);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return incomeArray;
-    }
-
 
     public ArrayList<IdStudents> readStudent(){ // Review  //
         ArrayList<IdStudents> incomeArray = new ArrayList<>();
@@ -143,8 +122,7 @@ public class DBControl {
         }
         return incomeArray;
     }
-//
-    /////////////////////////////////////////////////////////////////////
+
 
     public boolean addCourse(Course course) {
         boolean addResult = false;
@@ -229,27 +207,5 @@ public class DBControl {
     public String getCourseDiff() {
         return courseDiff;
     }
-    /////////////////////////////////////////////////////////////////////
 
-
-//
-//    public boolean updateStudentSubject(Student subject){
-//        boolean updateResult = false;
-//        try{
-//            String sqlText = "UPDATE Student SET credit=?,allsubject=? WHERE studentID=?";
-//            PreparedStatement prepare = connection.prepareStatement(sqlText);
-//            prepare.setString(1,subject.getCredit());
-//            prepare.setString(2,subject.getRegistersubject());
-//            prepare.setString(3,subject.getStudentID());
-//
-//            if (prepare.executeUpdate() == 1){
-//                updateResult = true;
-//            }
-//        }catch (SQLException e){
-//            e.printStackTrace();
-//        }finally {
-//            DBConnect.closeAllConfigure(resultSet,stmt,connection);
-//        }
-//        return updateResult;
-//    }
 }

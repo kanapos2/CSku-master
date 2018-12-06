@@ -65,12 +65,6 @@ public class Register_controller {
 
     @FXML
     public void initialize(){
-//
-////        tb_id.setCellValueFactory(new PropertyValueFactory<Course,String>("id"));
-////        tb_name.setCellValueFactory(new PropertyValueFactory<Course,String>("name"));
-////        tb_credit.setCellValueFactory(new PropertyValueFactory<Course,String>("credit"));
-////        tb_prerequisite.setCellValueFactory(new PropertyValueFactory<Course,String>("prerequisite"));
-////
 
         updateColor(tb2_id);
         colorCourse(tb_id);
@@ -82,8 +76,8 @@ public class Register_controller {
 
         table2.setItems(getData3(getData2()));
 
-//
-//
+
+
     }
 
     @FXML
@@ -100,8 +94,7 @@ public class Register_controller {
         for (int i=0 ; i<dataCouse.size() ; i++){
             for (RegisteredSubject registeredSubject : dataRegister){
                 if (dataCouse.get(i).equals(registeredSubject.getCourseId())){
-                    System.out.println("--------- E -------");
-                    dataCouse.remove(i);
+                    dataCouse.set(i,"Null");
                 }
             }
         }
@@ -122,13 +115,8 @@ public class Register_controller {
         tb_credit.setCellValueFactory(new PropertyValueFactory<Course,String>("credit"));
         tb_prerequisite.setCellValueFactory(new PropertyValueFactory<Course,String>("prerequisite"));
 
-        for (Course c : addCourseToTableView){
-            System.out.println(c);
-        }
 
     }
-
-
 
 
     public ObservableList<Course> getData(){
@@ -137,6 +125,7 @@ public class Register_controller {
         DBControl addDBControl = new DBControl(connection);
 
         ObservableList<Course> data=FXCollections.observableArrayList();
+        data.clear();
 
         for(Course course: addCourseToTableView){
 
@@ -175,9 +164,7 @@ public class Register_controller {
 
     }
     public void getID(String idFromMenu){
-        System.out.println("!!!!!!!!!!!!!!!!!");
         id = idFromMenu;
-        System.out.println(id);
         table2.setItems(getData3(getData2()));
 
         checkUpdateSubject();
@@ -187,14 +174,12 @@ public class Register_controller {
         addCourseToTableView.clear();
         dataCouse.clear();
         dataRegister.clear();
-        System.out.println(addCourseToTableView);
 
     }
 
 
     @FXML
     public void addSubject(ActionEvent event) {
-
 
         showTable();
         DBConnect db = new DBConnect();
@@ -240,7 +225,7 @@ public class Register_controller {
                     alert.setHeaderText("");
                     Optional<ButtonType> optional = alert.showAndWait();
                     if (optional.get() == ButtonType.YES){
-                        System.out.println("--------");
+
                         oblist.add(newCourse);  //ส่งขึ้นตาราง
                         addDBControl.addRegisteredSucject(id, addDBControl.getCourseID(), addDBControl.getCourseName(), addDBControl.getCourseCredit());
                         idSubject.clear();
@@ -262,7 +247,6 @@ public class Register_controller {
                             alert.setHeaderText("");
                             Optional<ButtonType> optional = alert.showAndWait();
                             if (optional.get()==ButtonType.YES){
-                                System.out.println("--------");
                                 oblist.add(newCourse);  //ส่งขึ้นตาราง
                                 addDBControl.addRegisteredSucject(id, addDBControl.getCourseID(), addDBControl.getCourseName(), addDBControl.getCourseCredit());
                                 idSubject.clear();
@@ -287,15 +271,17 @@ public class Register_controller {
                     }
                     if (allRegisterSubjects.size() == 0) {//กรณียนิสิตคนนั้นังไม่เคยลงทะเบียนซักวิชาในดาต้าเบสเลย
 
-                        if (addDBControl.getCoursePrerequisite() == null) {//ไม่มีวิชาก่อนหน้า   add data3
-                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do you want to add this subject?",ButtonType.YES,ButtonType.NO);
+                        if (addDBControl.getCoursePrerequisite() == null) {//ไม่มีวิชาก่อนหน้า
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do you want to add this subject?",ButtonType.NO,ButtonType.YES);
                             alert.setHeaderText("");
                             Optional<ButtonType> optional = alert.showAndWait();
                             if (optional.get()==ButtonType.YES){
+
                                 oblist.add(newCourse);  //ส่งขึ้นตาราง
                                 addDBControl.addRegisteredSucject(id, addDBControl.getCourseID(), addDBControl.getCourseName(), addDBControl.getCourseCredit());
                                 idSubject.clear();
                                 table2.setItems(getData3(getData2()));
+
                                 setDataToTableView();
                                 allSubjecttable.setItems(getData());
                                 addCourseToTableView.clear();
@@ -335,14 +321,6 @@ public class Register_controller {
             tb2_name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
             tb2_credit.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCredit()));
             table2.setItems(getData3(getData2()));
-        }
-        public void showTable2 () {
-
-            tb_id.setCellValueFactory(new PropertyValueFactory<Course, String>("id"));
-            tb_name.setCellValueFactory(new PropertyValueFactory<Course, String>("name"));
-            tb_credit.setCellValueFactory(new PropertyValueFactory<Course, String>("credit"));
-            tb_prerequisite.setCellValueFactory(new PropertyValueFactory<Course, String>("prerequisite"));
-
         }
 
 
@@ -420,13 +398,10 @@ public class Register_controller {
 
     @FXML
     public void checkUpdateSubject(){
-
-
         DBControl openDB = DBConnect.openDB();
         for (Course course : openDB.readCourse()){
             for (RegisteredSubject registeredSubject : openDB.readRegisteredSubject(id)){
                 if (registeredSubject.getCourseName().equals(course.getId())){
-//                    System.out.println("---------- EQUILT ---------");
                     updateColor(tb2_id);
                 }
             }

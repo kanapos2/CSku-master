@@ -19,8 +19,6 @@ import java.io.IOException;
 public class Login_controller {
 
 
-//    private IdStudents students = new IdStudents();
-
     @FXML
     private TextField id ;
 
@@ -33,7 +31,7 @@ public class Login_controller {
         DBControl openDB = DBConnect.openDB();
 
         int count = 0;
-        String name = "";
+        String name ;
         btn_enter = (Button) event.getSource();
 
         for (IdStudents s : openDB.readStudent()){
@@ -60,7 +58,6 @@ public class Login_controller {
 
         }
 
-        System.out.println(count);
         if (count != 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error message");
