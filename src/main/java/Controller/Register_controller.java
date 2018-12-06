@@ -55,17 +55,25 @@ public class Register_controller {
     private TableColumn<Course,String> tb_prerequisite;
 
 
+    private ArrayList<String> dataCouse = new ArrayList<>();
+    private ArrayList<RegisteredSubject> dataRegister;
 
+    private ArrayList<Course> addCourseToTableView;
 
 
     ObservableList<Course> oblist = FXCollections.observableArrayList();
 
-    @FXML public void initialize(){
+    @FXML
+    public void initialize(){
+//
+////        tb_id.setCellValueFactory(new PropertyValueFactory<Course,String>("id"));
+////        tb_name.setCellValueFactory(new PropertyValueFactory<Course,String>("name"));
+////        tb_credit.setCellValueFactory(new PropertyValueFactory<Course,String>("credit"));
+////        tb_prerequisite.setCellValueFactory(new PropertyValueFactory<Course,String>("prerequisite"));
+////
 
-        tb_id.setCellValueFactory(new PropertyValueFactory<Course,String>("id"));
-        tb_name.setCellValueFactory(new PropertyValueFactory<Course,String>("name"));
-        tb_credit.setCellValueFactory(new PropertyValueFactory<Course,String>("credit"));
-        tb_prerequisite.setCellValueFactory(new PropertyValueFactory<Course,String>("prerequisite"));
+        updateColor(tb2_id);
+        colorCourse(tb_id);
 
         tb2_id.setCellValueFactory(new PropertyValueFactory<Course,String>("id"));
         tb2_name.setCellValueFactory(new PropertyValueFactory<Course,String>("name"));
@@ -73,9 +81,56 @@ public class Register_controller {
 
 
         table2.setItems(getData3(getData2()));
-        allSubjecttable.setItems(getData());
+
+//
+//
+    }
+
+    @FXML
+    public void setDataToTableView() {
+        DBConnect db = new DBConnect();
+        Connection connection = db.openDatabase();
+        DBControl addDBControl = new DBControl(connection);
+        dataRegister = addDBControl.readRegisteredSubject(id);
+
+        for (Course course : addDBControl.readCourse()){
+            dataCouse.add(course.getId());
+        }
+
+        for (int i=0 ; i<dataCouse.size() ; i++){
+            for (RegisteredSubject registeredSubject : dataRegister){
+                if (dataCouse.get(i).equals(registeredSubject.getCourseId())){
+                    System.out.println("--------- E -------");
+                    dataCouse.remove(i);
+                }
+            }
+        }
+
+
+        addCourseToTableView = new ArrayList<>();
+
+        for (Course course : addDBControl.readCourse()){
+            for (String s : dataCouse){
+                if (s.equals(course.getId())){
+                    addCourseToTableView.add(course);
+                }
+            }
+        }
+
+        tb_id.setCellValueFactory(new PropertyValueFactory<Course,String>("id"));
+        tb_name.setCellValueFactory(new PropertyValueFactory<Course,String>("name"));
+        tb_credit.setCellValueFactory(new PropertyValueFactory<Course,String>("credit"));
+        tb_prerequisite.setCellValueFactory(new PropertyValueFactory<Course,String>("prerequisite"));
+
+        for (Course c : addCourseToTableView){
+            System.out.println(c);
+        }
 
     }
+
+
+
+
     public ObservableList<Course> getData(){
         DBConnect db = new DBConnect();
         Connection connection = db.openDatabase();
@@ -83,7 +138,7 @@ public class Register_controller {
 
         ObservableList<Course> data=FXCollections.observableArrayList();
 
-        for(Course course:addDBControl.readCourse()){
+        for(Course course: addCourseToTableView){
 
             data.add(new Course(course.getId(),course.getName(), course.getCredit(), course.getYear(),course.getTerm(),course.getDifficulty(),course.getPrerequisite()));
         }
@@ -126,6 +181,13 @@ public class Register_controller {
         table2.setItems(getData3(getData2()));
 
         checkUpdateSubject();
+
+        setDataToTableView();
+        allSubjecttable.setItems(getData());
+        addCourseToTableView.clear();
+        dataCouse.clear();
+        dataRegister.clear();
+        System.out.println(addCourseToTableView);
 
     }
 
@@ -183,6 +245,12 @@ public class Register_controller {
                         addDBControl.addRegisteredSucject(id, addDBControl.getCourseID(), addDBControl.getCourseName(), addDBControl.getCourseCredit());
                         idSubject.clear();
                         table2.setItems(getData3(getData2()));
+
+                        setDataToTableView();
+                        allSubjecttable.setItems(getData());
+                        addCourseToTableView.clear();
+                        dataCouse.clear();
+                        dataRegister.clear();
                     }
 
 
@@ -200,6 +268,11 @@ public class Register_controller {
                                 idSubject.clear();
                                 mustPrereq = false;
                                 table2.setItems(getData3(getData2()));
+                                setDataToTableView();
+                                allSubjecttable.setItems(getData());
+                                addCourseToTableView.clear();
+                                dataCouse.clear();
+                                dataRegister.clear();
                                 break;
                             }
 
@@ -223,6 +296,11 @@ public class Register_controller {
                                 addDBControl.addRegisteredSucject(id, addDBControl.getCourseID(), addDBControl.getCourseName(), addDBControl.getCourseCredit());
                                 idSubject.clear();
                                 table2.setItems(getData3(getData2()));
+                                setDataToTableView();
+                                allSubjecttable.setItems(getData());
+                                addCourseToTableView.clear();
+                                dataCouse.clear();
+                                dataRegister.clear();
                             }
 
                         } else {
@@ -282,7 +360,7 @@ public class Register_controller {
 
                     try {
                         stage.setScene(new Scene(loader.load(), 800, 600));
-                        stage.setTitle("CS");
+                        stage.setTitle("Menu Register");
                         stage.setResizable(false);
 
                         Menu_controller controller = (Menu_controller) loader.getController();
@@ -311,9 +389,29 @@ public class Register_controller {
                         setText(null);
                         setStyle("");
                     } else { //If the cell is not empty\
-                        setText(item); //Put the String data in the cell
+                        setText("PASS"); //Put the String data in the cell
 //                        RegisteredSubject auxPerson = getTableView().getItems().get(getIndex());
                         setStyle("-fx-font-weight: bold; -fx-background-color: rgba(0,202,24,0.45)");
+                    }
+                }
+            };
+        });
+    }
+
+    @FXML
+    public void colorCourse(TableColumn nowColumn) {
+        nowColumn.setCellFactory(column -> {
+            return new TableCell<RegisteredSubject, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty); //This is mandatory
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setStyle("");
+                    } else { //If the cell is not empty\
+                        setText(item); //Put the String data in the cell
+//                        RegisteredSubject auxPerson = getTableView().getItems().get(getIndex());
+                        setStyle("-fx-font-weight: bold;" + "-fx-background-color: rgba(223,0,11,0.45)");
                     }
                 }
             };
@@ -326,8 +424,8 @@ public class Register_controller {
 
         DBControl openDB = DBConnect.openDB();
         for (Course course : openDB.readCourse()){
-            for (RegisteredSubject registeredSubject : openDB.readRegister()){
-                if (registeredSubject.getCourseName().equals(course.getId()) && registeredSubject.getCourseId().equals(id)){
+            for (RegisteredSubject registeredSubject : openDB.readRegisteredSubject(id)){
+                if (registeredSubject.getCourseName().equals(course.getId())){
 //                    System.out.println("---------- EQUILT ---------");
                     updateColor(tb2_id);
                 }

@@ -59,7 +59,7 @@ public class Menu_controller {
 
         try {
             stage.setScene(new Scene(loader.load(), 1135, 613));
-            stage.setTitle("CS");
+            stage.setTitle("All course for CS");
             stage.setX(150);
             stage.setResizable(false);
             AllCourse_controller controller = (AllCourse_controller) loader.getController();
@@ -84,7 +84,7 @@ public class Menu_controller {
 
         try {
             stage.setScene(new Scene(loader.load(), 800, 600));
-            stage.setTitle("CS");
+            stage.setTitle("Register CS");
             stage.setResizable(false);
 
             Register_controller controller = (Register_controller) loader.getController();

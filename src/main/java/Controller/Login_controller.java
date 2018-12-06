@@ -44,7 +44,7 @@ public class Login_controller {
 
                 try {
                     stage.setScene(new Scene(loader.load(), 800, 600));
-                    stage.setTitle("CS");
+                    stage.setTitle("Menu Register");
                     stage.setResizable(false);
 
                     Menu_controller controller = (Menu_controller) loader.getController();
